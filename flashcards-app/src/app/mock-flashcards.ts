@@ -51,4 +51,11 @@ export const FLASHCARDS: Flashcard[] = [
         dictionary: DICTIONARIES[1],
         isHidden: true,
     },
+    {
+        id: 8,
+        source: 'delfin',
+        target: 'Dolphin',
+        dictionary: DICTIONARIES[3],
+        isHidden: true,
+    },
 ]
