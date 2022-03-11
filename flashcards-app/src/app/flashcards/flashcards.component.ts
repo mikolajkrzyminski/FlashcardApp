@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Flashcard } from '../flashcard';
-import { FLASHCARDS } from '../mock-flashcards';
 import { Dictionary } from '../dictionary';
+import { FlashcardService } from '../flashcard.service';
 
 @Component({
   selector: 'app-flashcards',
@@ -11,13 +11,14 @@ import { Dictionary } from '../dictionary';
 
 export class FlashcardsComponent implements OnInit {
 
-  flashcards = FLASHCARDS;
+  flashcards: Flashcard[] = [];
 
   presentedFlashcards: Flashcard[] = [];
 
-  constructor() { }
+  constructor(private flashcardService: FlashcardService) { }
 
   ngOnInit(): void {
+    this.setFlashcards();
   }
 
   // changes isHidden flag on click event
@@ -40,5 +41,12 @@ export class FlashcardsComponent implements OnInit {
     } else {
       this.presentedFlashcards = this.flashcards;
     }
+  }
+
+  setFlashcards(): void {
+    this.flashcardService.getFlashcards().subscribe(flashcards => {
+      this.flashcards = flashcards
+      this.presentedFlashcards
+    });
   }
 }

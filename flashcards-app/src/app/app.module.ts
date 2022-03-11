@@ -8,17 +8,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-
+import { MatButtonModule } from '@angular/material/button';
+import { DictionariesComponent } from './dictionaries/dictionaries.component';
 
 const material = [
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatButtonModule
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    FlashcardsComponent
+    FlashcardsComponent,
+    DictionariesComponent
   ],
   imports: [
     material,
