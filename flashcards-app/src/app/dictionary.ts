@@ -1,5 +1,5 @@
 export interface Dictionary {
     id: number;
-    sourceLang: string;
-    targetLang: string;
+    source_lang: string;
+    target_lang: string;
 }
