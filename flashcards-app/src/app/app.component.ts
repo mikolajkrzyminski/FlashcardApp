@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
   }
 
   setTrgLangs(): void {
+    this.title = "connection branch title";
     var resultLangs: string[] = [];
     if (this.translationForm.get("selectedSourceLang")?.value) {
       this.directedDicts.forEach(dict => {
