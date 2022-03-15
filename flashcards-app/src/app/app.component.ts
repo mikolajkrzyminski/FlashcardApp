@@ -63,12 +63,14 @@ export class AppComponent implements OnInit {
   }
 
   setSrcLangs(): void {
+    this.title = "Test title";
     var resultLangs: string[] = [];
     this.directedDicts.forEach(dict => resultLangs.push(dict.source_lang));
     this.srcLangs = this.uniqueArray(resultLangs);
   }
 
   setTrgLangs(): void {
+    this.title = "Test title2";
     var resultLangs: string[] = [];
     if (this.translationForm.get("selectedSourceLang")?.value) {
       this.directedDicts.forEach(dict => {
