@@ -1,17 +1,33 @@
-<mat-sidenav-container>
-    <mat-sidenav mode="over" [(opened)]="opened">
-        <mat-nav-list>
-            <b>Dictionaries</b>
-            <a mat-list-item *ngFor="let dictionary of dictionaries"
-                (click)="selectDict(dictionary)">{{dictionary.sourceLang}} to {{dictionary.targetLang}}</a>
-            <a mat-list-item (click)="selectDict()">show all</a>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <button (click)="handleNavStateChange()">MENU</button>
-        <h1>{{title}}</h1>
-        <h2>{{selectedDict ? selectedDict.sourceLang:"All"}} {{selectedDict ? "to":""}} {{selectedDict ?
-            selectedDict.targetLang:""}}</h2>
-        <app-flashcards></app-flashcards>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+<h1>{{title}}</h1>
+
+<form [formGroup]="translationForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+        <mat-label>search word</mat-label>
+        <input matInput type="text" formControlName="searchPhrase">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>source language</mat-label>
+        <mat-select formControlName="selectedSourceLang" (selectionChange)="setTrgLangs()">
+            <mat-option *ngFor="let sourceLanguage of srcLangs" [value]="sourceLanguage">
+                {{getLabel(sourceLanguage)}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="padright" appearance="fill">
+        <mat-label>target language</mat-label>
+        <mat-select formControlName="selectedTargetLang">
+            <mat-option *ngFor="let targetLanguage of trgLangs" [value]="targetLanguage">
+                {{getLabel(targetLanguage)}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary" [disabled]="!translationForm.valid">translate</button>
+
+</form>
+
+
+<app-dictionaries></app-dictionaries>

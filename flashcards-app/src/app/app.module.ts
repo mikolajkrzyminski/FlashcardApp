@@ -3,28 +3,41 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FlashcardsComponent } from './flashcards/flashcards.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { DictionariesComponent } from './dictionaries/dictionaries.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 const material = [
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatButtonModule,
+  TextFieldModule,
+  ReactiveFormsModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatInputModule
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    FlashcardsComponent
+    FlashcardsComponent,
+    DictionariesComponent
   ],
   imports: [
     material,
     BrowserModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
