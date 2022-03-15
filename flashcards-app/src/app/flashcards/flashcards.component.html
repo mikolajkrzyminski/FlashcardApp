@@ -2,8 +2,8 @@
     <li *ngFor="let flashcard of presentedFlashcards">
         <div class="card" [ngClass]="{'background_blue': flashcard.isHidden, 'background_red': !flashcard.isHidden}"
             (click)="onClick(flashcard)">
-            <p class="dict">{{flashcard.isHidden ? flashcard.dictionary.sourceLang :
-                flashcard.dictionary.targetLang}}</p>
+            <p class="dict">{{flashcard.isHidden ? flashcard.dictionary.source_lang :
+                flashcard.dictionary.target_lang}}</p>
             <div class="container">
                 <p class="word">{{flashcard.isHidden ? flashcard.source : flashcard.target}}</p>
             </div>

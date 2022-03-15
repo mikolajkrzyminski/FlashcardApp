@@ -3,22 +3,22 @@ import { Dictionary } from './dictionary'
 export const DICTIONARIES: Dictionary[] = [
     {
         id: 1,
-        sourceLang: 'pl',
-        targetLang: 'de',
+        source_lang: 'pl',
+        target_lang: 'de',
     },
     {
         id: 2,
-        sourceLang: 'de',
-        targetLang: 'pl',
+        source_lang: 'de',
+        target_lang: 'pl',
     },
     {
         id: 3,
-        sourceLang: 'en',
-        targetLang: 'pl',
+        source_lang: 'en',
+        target_lang: 'pl',
     },
     {
         id: 4,
-        sourceLang: 'pl',
-        targetLang: 'en',
+        source_lang: 'pl',
+        target_lang: 'en',
     },
 ];

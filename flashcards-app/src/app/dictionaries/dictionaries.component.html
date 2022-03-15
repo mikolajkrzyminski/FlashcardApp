@@ -1,18 +1,18 @@
 <mat-sidenav-container>
-    <mat-sidenav mode="over" [(opened)]="opened">
+    <mat-sidenav mode="over" [(opened)]="opened" position="end">
         <mat-nav-list>
             <b>Dictionaries</b>
             <a mat-list-item *ngFor="let dictionary of dictionaries" (click)="selectDict(dictionary)"
-                [class.selected]="dictionary === selectedDict">{{dictionary.sourceLang}} to
-                {{dictionary.targetLang}}</a>
+                [class.selected]="dictionary === selectedDict">{{dictionary.source_lang}} to
+                {{dictionary.target_lang}}</a>
             <a mat-list-item [class.selected]="!selectedDict" (click)="selectDict()">show all</a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <button mat-fab color="white" (click)="handleNavStateChange()">
             <img src="../assets/menu_black_24dp.svg"></button>
-        <h2>{{selectedDict ? selectedDict.sourceLang:"All"}} {{selectedDict ? "to":""}} {{selectedDict ?
-            selectedDict.targetLang:""}}</h2>
+        <h2>{{selectedDict ? selectedDict.source_lang:"All"}} {{selectedDict ? "to":""}} {{selectedDict ?
+            selectedDict.target_lang:""}}</h2>
         <app-flashcards></app-flashcards>
     </mat-sidenav-content>
 </mat-sidenav-container>
