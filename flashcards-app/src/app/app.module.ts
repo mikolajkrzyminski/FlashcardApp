@@ -15,6 +15,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
+import { HttpClientModule } from '@angular/common/http';
+
 
 const material = [
   MatSidenavModule,
@@ -36,6 +38,7 @@ const material = [
   imports: [
     material,
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
   ],
