@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Dictionary } from './dictionary';
 import { Label } from './page-data';
 import { PageDataService } from './page-data.service';
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.translationForm = this.formBuilder.group({
-      searchPhrase: [null, Validators.required],
+      searchPhrase: ['', Validators.required],
       selectedSourceLang: [null, Validators.required],
       selectedTargetLang: [null, Validators.required]
     });
@@ -35,10 +35,18 @@ export class AppComponent implements OnInit {
     this.setPageData();
   }
 
+  dictionaryValidator() {
+    if (!this.translationForm.get('selectedSourceLang')?.value.length) return null
+    return this.directedDicts.includes({
+      source_lang: this.translationForm.get('selectedSourceLang')?.value,
+      target_lang: this.translationForm.get('selectedTargetLang')?.value
+    }) ? null : { noDictionary: true };
+  }
+
   async setPageData() {
     this.pageDataService.getPageData().subscribe(pageData => {
       console.log(pageData);
-      this.directedDicts = this.getDictionaries(pageData.directed_dicts);
+      this.directedDicts = pageData.directed_dicts as Dictionary[];
       this.languagesLabel = pageData.labels;
       this.setLangs();
     });
@@ -48,15 +56,14 @@ export class AppComponent implements OnInit {
     return this.languagesLabel.find(element => element.lang === language)?.label ?? "";
   }
 
-  getLang(label: string): string {
-    return this.languagesLabel.find(element => element.label === label)?.lang ?? "";
-  }
+  //getLang(label: string): string {
+  //  return this.languagesLabel.find(element => element.label === label)?.lang ?? "";
+  //}
 
   getDictionaries(data: any[]): Dictionary[] {
     var resultDictsArray: Dictionary[] = [];
     for (let i = 0; i < data.length; i++) {
       resultDictsArray.push({
-        id: i,
         source_lang: data[i].source_lang,
         target_lang: data[i].target_lang,
       });
@@ -80,7 +87,7 @@ export class AppComponent implements OnInit {
       this.directedDicts.forEach(dict => resultLangs.push(dict.target_lang));
     }
     this.trgLangs = this.uniqueArray(resultLangs);
-    this.translationForm.invalid;
+    this.translationForm.patchValue({ "selectedTargetLang": null });
   }
 
   setLangs(): void {
@@ -93,6 +100,6 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.title = "submited!";
+
   }
 }

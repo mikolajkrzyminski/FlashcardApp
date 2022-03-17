@@ -1,4 +1,3 @@
-import { Dictionary } from "./dictionary";
 
 export interface Label {
     lang: string;
