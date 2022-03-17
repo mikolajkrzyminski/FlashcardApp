@@ -35,17 +35,8 @@ export class AppComponent implements OnInit {
     this.setPageData();
   }
 
-  dictionaryValidator() {
-    if (!this.translationForm.get('selectedSourceLang')?.value.length) return null
-    return this.directedDicts.includes({
-      source_lang: this.translationForm.get('selectedSourceLang')?.value,
-      target_lang: this.translationForm.get('selectedTargetLang')?.value
-    }) ? null : { noDictionary: true };
-  }
-
   async setPageData() {
     this.pageDataService.getPageData().subscribe(pageData => {
-      console.log(pageData);
       this.directedDicts = pageData.directed_dicts as Dictionary[];
       this.languagesLabel = pageData.labels;
       this.setLangs();
@@ -55,10 +46,6 @@ export class AppComponent implements OnInit {
   getLabel(language: string): string {
     return this.languagesLabel.find(element => element.lang === language)?.label ?? "";
   }
-
-  //getLang(label: string): string {
-  //  return this.languagesLabel.find(element => element.label === label)?.lang ?? "";
-  //}
 
   getDictionaries(data: any[]): Dictionary[] {
     var resultDictsArray: Dictionary[] = [];
@@ -100,6 +87,11 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    this.pageDataService.getTranslation(
+      this.translationForm.get('searchPhrase')?.value,
+      this.translationForm.get('selectedSourceLang')?.value,
+      this.translationForm.get('selectedTargetLang')?.value).subscribe(translations => {
+        console.log(translations);
+      });
   }
 }
