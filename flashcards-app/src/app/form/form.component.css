@@ -1,0 +1,19 @@
+
+.mat-form-field {
+    padding: 8px;
+  }
+  
+  .mat-form-field.padright {
+    padding-right: 16px;
+  }
+  
+  section {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  button {
+    margin-top: 0.6em;
+    padding: 1.55em 1.55em;
+    line-height: 1.125;
+  }

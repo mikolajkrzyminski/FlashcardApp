@@ -1,0 +1,8 @@
+ul {
+    list-style-type: none;
+    width: 30em;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+}

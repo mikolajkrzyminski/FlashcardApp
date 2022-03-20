@@ -1,3 +1,4 @@
+import { Dictionary } from "./dictionary";
 
 export interface Label {
     lang: string;
@@ -7,5 +8,12 @@ export interface Label {
 export interface PageData {
     langs: string[];
     labels: Label[];
-    directed_dicts: Object[];
+    directed_dicts: Dictionary[];
 }
+
+export interface Translation {
+    source: string;
+    target: string;
+}
+
+

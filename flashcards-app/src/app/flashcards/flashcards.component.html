@@ -1,9 +1,17 @@
+<section>
+    <mat-select (selectionChange)="selectDict()">
+        <mat-option *ngFor="let dict of dictionaries" [value]="dict">
+            {{dict.sourceLang}} to {{dict.targetLang}}
+        </mat-option>
+    </mat-select>
+</section>
+
 <div class="flashcards">
     <li *ngFor="let flashcard of presentedFlashcards">
         <div class="card" [ngClass]="{'background_blue': flashcard.isHidden, 'background_red': !flashcard.isHidden}"
             (click)="onClick(flashcard)">
-            <p class="dict">{{flashcard.isHidden ? flashcard.dictionary.source_lang :
-                flashcard.dictionary.target_lang}}</p>
+            <p class="dict">{{flashcard.isHidden ? flashcard.sourceLang :
+                flashcard.targetLang}}</p>
             <div class="container">
                 <p class="word">{{flashcard.isHidden ? flashcard.source : flashcard.target}}</p>
             </div>

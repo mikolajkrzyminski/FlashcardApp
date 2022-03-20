@@ -1,9 +1,8 @@
-import { Dictionary } from "./dictionary";
-
 export interface Flashcard {
     id: number;
     source: string;
     target: string;
-    dictionary: Dictionary;
+    sourceLang: string;
+    targetLang: string;
     isHidden: boolean;
 }

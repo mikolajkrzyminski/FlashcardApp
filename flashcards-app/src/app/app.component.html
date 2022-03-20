@@ -1,34 +1,13 @@
-<h1>{{title}}</h1>
+<p>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>{{title}}</span>
+            <span class="example-spacer"></span>
+            <a routerLink="/flashcards" routerLinkActive="active">Flashcards</a>
+            <div class="spacer"></div>
+            <a routerLink="/form" routerLinkActive="active">Add new</a>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</p>
 
-<form [formGroup]="translationForm" (ngSubmit)="onSubmit()" validate>
-    <section>
-        <mat-form-field appearance="fill">
-            <mat-label>search word</mat-label>
-            <input matInput type="text" formControlName="searchPhrase">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>source language</mat-label>
-            <mat-select formControlName="selectedSourceLang" (selectionChange)="setTrgLangs()">
-                <mat-option *ngFor="let sourceLanguage of srcLangs" [value]="sourceLanguage">
-                    {{getLabel(sourceLanguage)}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="padright" appearance="fill">
-            <mat-label>target language</mat-label>
-            <mat-select formControlName="selectedTargetLang">
-                <mat-option *ngFor="let targetLanguage of trgLangs" [value]="targetLanguage">
-                    {{getLabel(targetLanguage)}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <button mat-raised-button type="submit" color="primary" [disabled]="!translationForm.valid">translate</button>
-    </section>
-
-</form>
-
-
-<app-dictionaries></app-dictionaries>
+<router-outlet></router-outlet>

@@ -1,4 +1,4 @@
 export interface Dictionary {
-    source_lang: string;
-    target_lang: string;
+    sourceLang: string;
+    targetLang: string;
 }
