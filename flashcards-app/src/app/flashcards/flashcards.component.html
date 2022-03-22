@@ -1,10 +1,11 @@
-<section>
-    <mat-select (selectionChange)="selectDict()">
+<mat-form-field appearance="fill">
+    <mat-select (selectionChange)="selectDict($event.value)" [(ngModel)]="selectedDict">
         <mat-option *ngFor="let dict of dictionaries" [value]="dict">
-            {{dict.sourceLang}} to {{dict.targetLang}}
+            {{dict.sourceLang.length > 0 ? dict.sourceLang + " to " + dict.targetLang: "Show All"}}
         </mat-option>
     </mat-select>
-</section>
+</mat-form-field>
+
 
 <div class="flashcards">
     <li *ngFor="let flashcard of presentedFlashcards">

@@ -17,9 +17,9 @@ export class FlashcardsComponent implements OnInit {
 
   presentedFlashcards: Flashcard[] = [];
 
-  dictionaries: Dictionary[] = [];
+  selectedDict: Dictionary = { sourceLang: "", targetLang: "" };
 
-  selectedDict?: Dictionary;
+  dictionaries: Dictionary[] = [this.selectedDict];
 
   constructor(private flashcardService: FlashcardService) { }
 
@@ -34,7 +34,8 @@ export class FlashcardsComponent implements OnInit {
 
   // returns array of distinct dictionaries used in flashcards
   getUsedDictionaries(): Dictionary[] {
-    var dicts: Dictionary[] = [];
+    // special ditionary option for presenting all flashcards
+    var dicts: Dictionary[] = [{ sourceLang: "", targetLang: "" }];
     this.flashcards.forEach(elem => {
       dicts.push(
         {
@@ -47,7 +48,7 @@ export class FlashcardsComponent implements OnInit {
 
   // returns all saved flashcards for given Dictionary
   setPresentedFlashcards(): void {
-    if (this.selectedDict) {
+    if (this.selectedDict?.sourceLang.length > 0 && this.selectedDict?.targetLang.length > 0) {
       this.presentedFlashcards = this.flashcards.filter((flashcard) => {
         return this.selectedDict!.sourceLang === flashcard.sourceLang &&
           this.selectedDict!.targetLang === flashcard.targetLang;
@@ -64,7 +65,7 @@ export class FlashcardsComponent implements OnInit {
     });
   }
 
-  selectDict(dictionary?: Dictionary): void {
+  selectDict(dictionary: Dictionary): void {
     this.selectedDict = dictionary;
     this.setPresentedFlashcards();
   }
