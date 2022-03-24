@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Dictionary } from './dictionary';
 import { Flashcard } from './flashcard';
-import { FLASHCARDS } from './mock-flashcards';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -10,11 +10,12 @@ import { Observable, of } from 'rxjs';
 })
 
 export class FlashcardService {
+  serverUrl = "http://localhost:8000";
 
-  constructor() { }
+
+  constructor(private http: HttpClient) { }
 
   getFlashcards(): Observable<Flashcard[]> {
-    const flashcards = of(FLASHCARDS);
-    return flashcards;
+    return this.http.get<Flashcard[]>(this.serverUrl + "/flashcards");
   }
 }

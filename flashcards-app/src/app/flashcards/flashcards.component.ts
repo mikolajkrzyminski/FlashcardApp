@@ -60,7 +60,11 @@ export class FlashcardsComponent implements OnInit {
 
   setFlashcards(): void {
     this.flashcardService.getFlashcards().subscribe(flashcards => {
-      this.flashcards = flashcards
+      flashcards.forEach(e => {
+        e.isHidden = true;
+        console.log(e);
+        this.flashcards.push(e);
+      });
       this.setDictionaries();
     });
   }

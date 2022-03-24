@@ -1,8 +1,8 @@
 export interface Flashcard {
-    id: number;
-    source: string;
-    target: string;
+    _id: number;
+    sourceWord: string;
+    targetWord: string;
     sourceLang: string;
     targetLang: string;
-    isHidden: boolean;
+    isHidden?: boolean;
 }
